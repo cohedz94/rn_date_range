@@ -12,22 +12,22 @@ import {
   TouchableHighlight
 } from 'react-native';
 import Moment from 'moment';
-import styles from 'react-native-calendar-select/Day/style';
+import styles from './style';
 
 export default class Day extends Component {
   static propTypes = {
     onChoose: PropTypes.func
   }
-  constructor(props) {
+  constructor (props) {
     super(props);
     this._chooseDay = this._chooseDay.bind(this);
     this._statusCheck = this._statusCheck.bind(this);
     this._statusCheck();
   }
-  _chooseDay() {
+  _chooseDay () {
     this.props.onChoose && this.props.onChoose(this.props.date);
   }
-  _statusCheck(props) {
+  _statusCheck (props) {
     const {
       startDate,
       endDate,
@@ -49,27 +49,22 @@ export default class Day extends Component {
     this.isFocus = this.isMid || this.isStart || this.isEnd;
     return this.isFocus;
   }
-  shouldComponentUpdate(nextProps) {
+  shouldComponentUpdate (nextProps) {
     let prevStatus = this.isFocus;
     let nextStatus = this._statusCheck(nextProps);
     if (prevStatus || nextStatus) return true;
     return false;
   }
-  render() {
-
-    console.log('====================================');
-    console.log(123123);
-    console.log('====================================');
-
+  render () {
     const {
       date,
       color
     } = this.props;
     let text = date ? date.date() : '';
-    let mainColor = { color: color.mainColor };
-    let subColor = { color: color.subColor };
-    let mainBack = { backgroundColor: color.mainColor };
-    let subBack = { backgroundColor: color.subColor };
+    let mainColor = {color: color.mainColor};
+    let subColor = {color: color.subColor};
+    let mainBack = {backgroundColor: color.mainColor};
+    let subBack = {backgroundColor: color.subColor};
     return (
       <View
         style={[
